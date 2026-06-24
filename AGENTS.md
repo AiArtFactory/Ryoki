@@ -40,17 +40,43 @@ The `signingKey` in `index.json` is informational only; Mihon never reads it at 
 
 ### 1. Build the APK
 
-Clone or fork the [mihonapp/mihon](https://github.com/mihonapp/mihon) repository and add a new module (copy an existing one like `manhwausExtension` as a template).
+Extensions are standalone Android Studio projects (not part of the mihon repo). Create a new Android application project with these settings:
 
-```bash
-# Set up Java for Gradle
-export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+```groovy
+// build.gradle.kts
+plugins {
+    id("com.android.application")
+    kotlin("android")
+}
 
-# Build release APK (uses debug signing by default — see step 2)
-./gradlew :yourModule:assembleRelease
+android {
+    namespace = "eu.kanade.tachiyomi.extension.{lang}.{sourceName}"
+    defaultConfig {
+        applicationId = namespace
+        minSdk = 26
+        targetSdk = 36
+        versionCode = 1
+        versionName = "1.0.1"
+    }
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            signingConfig = signingConfigs.named("debug").get()
+        }
+    }
+}
+
+dependencies {
+    compileOnly(files("../mihon/source-api/src/commonMain"))
+    compileOnly("org.jsoup:jsoup:1.22.2")
+    compileOnly("com.squareup.okhttp3:okhttp:5.4.0")
+    compileOnly("io.reactivex:rxjava:1.3.8")
+}
 ```
 
-The APK will be at `yourModule/build/outputs/apk/release/yourModule-release.apk`.
+You will need a local checkout of [mihonapp/mihon](https://github.com/mihonapp/mihon) to provide the `source-api` dependency. Clone it alongside this repo and reference `../mihon/source-api/src/commonMain` as shown above.
+
+Build the APK with Android Studio (Build → Build Bundle(s) / APK(s) → Build APK) or Gradle from the command line. The APK will be at `build/outputs/apk/debug/{module}-debug.apk` (or release if configured).
 
 ### 2. Sign with your keystore
 
@@ -216,22 +242,22 @@ Always set `user.name` and `user.email` in the repo's **local** git config, not 
 
 ## How to create a new extension source (Kotlin)
 
-Reference: [mihonapp/mihon](https://github.com/mihonapp/mihon) → `manhwausExtension/` module as template.
+Create a standalone Android Studio project (not a mihon module). The `source-api` from [mihonapp/mihon](https://github.com/mihonapp/mihon) provides the interface contract.
 
-1. Copy the `manhwausExtension` module and rename it.
-2. Update `build.gradle.kts`:
-   - `namespace` and `applicationId` → `eu.kanade.tachiyomi.extension.{lang}.{sourceName}`
-   - `versionCode` and `versionName`
-3. Update `AndroidManifest.xml`:
-   - `android:label="Tachiyomi: {SourceName}"`
-   - `meta-data tachiyomi.extension.class` → `{YourClassName}`
-   - `meta-data tachiyomi.extension.nsfw` → `"1"` if NSFW, omit otherwise
-4. Create the source class extending `ParsedHttpSource`:
-   - Override `name`, `baseUrl`, `lang`, `supportsLatest`
-   - Implement: `popularMangaSelector()`, `popularMangaFromElement()`, `mangaDetailsParse()`, `chapterListSelector()`, `chapterFromElement()`, `pageListParse()`
-   - Use Jsoup selectors (`div.class`, `a[href*="..."]`) to extract data from the site's HTML
-5. Generate launcher icons: crop logo to square, scale to 48/72/96/144/192px, save as `ic_launcher.png` in `res/mipmap-{mdpi,hdpi,xhdpi,xxhdpi,xxxhdpi}/`.
-6. Build and sign as described above.
+1. Set up the Android project with `compileOnly` dependencies on `source-api`, `jsoup`, `okhttp`, `injekt`, and `rxjava`.
+2. Create an `AndroidManifest.xml` declaring `<uses-feature android:name="tachiyomi.extension" />` and metadata for the extension class + NSFW flag.
+3. Implement a source class extending `HttpSource` (preferred) or `ParsedHttpSource` (deprecated but simpler). The source-api lives at `source-api/src/commonMain/kotlin/eu/kanade/tachiyomi/source/`.
+4. Override required properties: `name`, `baseUrl`, `lang`, `supportsLatest`.
+5. Implement the data-fetching methods — either the modern suspend API (`getPopularManga`, `getSearchManga`, `getMangaUpdate`, `getPageList`) or the deprecated helper-based API (`popularMangaRequest`, `popularMangaParse`, etc.).
+6. Generate launcher icons: crop logo to square, scale to 48/72/96/144/192px, save as `ic_launcher.png` in `res/mipmap-{mdpi,hdpi,xhdpi,xxhdpi,xxxhdpi}/`.
+7. Build and sign as described above.
+
+**Key source-api classes to know:**
+- `eu.kanade.tachiyomi.source.CatalogueSource` — base interface for browse-capable sources
+- `eu.kanade.tachiyomi.source.online.HttpSource` — abstract class with HTTP/Jsoup helpers (preferred)
+- `eu.kanade.tachiyomi.source.online.ParsedHttpSource` — deprecated convenience class with Jsoup selectors
+- `eu.kanade.tachiyomi.source.model.{SManga,SChapter,Page,MangasPage}` — data models
+- `eu.kanade.tachiyomi.source.model.FilterList` — filter support for search
 
 ## GitHub Pages requirements
 
