@@ -1,6 +1,6 @@
 # Mihon Extensions
 
-Digital Cubby-hole for Mihon Extensions that either weren't on the [Keiyoushi extensions page](https://keiyoushi.github.io/extensions/) / [Keiyoushi gitbuh](https://github.com/keiyoushi/extensions) or hadn't existed beforehand to begin with.
+Digital Cubby-hole for Mihon Extensions that either weren't on the [Keiyoushi extensions page](https://keiyoushi.github.io/extensions/) / [Keiyoushi extensions gitbub repo](https://github.com/keiyoushi/extensions) or hadn't existed beforehand to begin with.
 
 ## Usage
 
