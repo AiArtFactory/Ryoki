@@ -6,7 +6,7 @@ Digital Cubby-hole for Mihon Extensions that either weren't on the [Keiyoushi ex
 
 Add this repo in Mihon via:
 
-`https://raw.githubusercontent.com/AiArtFactory/Ryoki/refs/heads/repo/index.json`
+`https://raw.githubusercontent.com/AiArtFactory/Ryoki/repo/repo.json`
 
 ## Extensions
 
