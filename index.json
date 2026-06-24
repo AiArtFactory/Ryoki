@@ -11,8 +11,8 @@
         "name": "ManhwaUS",
         "packageName": "eu.kanade.tachiyomi.extension.en.manhwaus",
         "resources": {
-          "apkUrl": "https://raw.githubusercontent.com/AiArtFactory/ManhwaUS.net/refs/heads/repo/apk/tachiyomi-en.manhwaus-v1.0.1.apk",
-          "iconUrl": "https://raw.githubusercontent.com/AiArtFactory/ManhwaUS.net/refs/heads/repo/icon/eu.kanade.tachiyomi.extension.en.manhwaus.png"
+          "apkUrl": "https://github.com/AiArtFactory/Ryoki/raw/refs/heads/repo/apk/tachiyomi-en.manhwaus-v1.0.1.apk",
+          "iconUrl": "https://github.com/AiArtFactory/Ryoki/raw/refs/heads/repo/apk/tachiyomi-en.manhwaus-v1.0.1.apk"
         },
         "extensionLib": "1.4",
         "versionCode": 1,
