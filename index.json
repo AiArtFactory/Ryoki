@@ -1,0 +1,32 @@
+{
+  "name": "ManhwaUS.net Extensions",
+  "badgeLabel": "MUS",
+  "signingKey": "ddeaaab6fc356260eacb9c6042f8f868ae048ef35e33c9dc720aca3ea338c6b9",
+  "contact": {
+    "website": "https://github.com/AiArtFactory/ManhwaUS.net"
+  },
+  "extensionList": {
+    "extensions": [
+      {
+        "name": "ManhwaUS",
+        "packageName": "eu.kanade.tachiyomi.extension.en.manhwaus",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/AiArtFactory/ManhwaUS.net/refs/heads/repo/apk/tachiyomi-en.manhwaus-v1.0.1.apk",
+          "iconUrl": "https://raw.githubusercontent.com/AiArtFactory/ManhwaUS.net/refs/heads/repo/icon/eu.kanade.tachiyomi.extension.en.manhwaus.png"
+        },
+        "extensionLib": "1.4",
+        "versionCode": 1,
+        "versionName": "1.0.1",
+        "contentWarning": "NSFW",
+        "sources": [
+          {
+            "id": 4401791217108777380,
+            "name": "ManhwaUS",
+            "language": "en",
+            "homeUrl": "https://manhwaus.net"
+          }
+        ]
+      }
+    ]
+  }
+}
