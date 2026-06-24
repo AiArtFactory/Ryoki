@@ -1,8 +1,8 @@
 {
-  "index_v2": "https://raw.githubusercontent.com/AiArtFactory/ManhwaUS.net/repo/index.pb",
+  "index_v2": "https://raw.githubusercontent.com/AiArtFactory/Ryoki/repo/index.pb",
   "meta": {
-    "name": "ManhwaUS.net Extensions",
-    "website": "https://github.com/AiArtFactory/ManhwaUS.net",
+    "name": "Mihon Extensions",
+    "website": "https://github.com/AiArtFactory/Ryoki",
     "signingKeyFingerprint": "ddeaaab6fc356260eacb9c6042f8f868ae048ef35e33c9dc720aca3ea338c6b9"
   }
 }
