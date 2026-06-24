@@ -1,5 +1,5 @@
 {
-  "name": "Mihon Extensions",
+  "name": "Ryoki Extensions",
   "badgeLabel": "MUS",
   "signingKey": "ddeaaab6fc356260eacb9c6042f8f868ae048ef35e33c9dc720aca3ea338c6b9",
   "contact": {
@@ -11,8 +11,8 @@
         "name": "ManhwaUS",
         "packageName": "eu.kanade.tachiyomi.extension.en.manhwaus",
         "resources": {
-          "apkUrl": "https://github.com/AiArtFactory/Ryoki/raw/refs/heads/repo/apk/tachiyomi-en.manhwaus-v1.0.1.apk",
-          "iconUrl": "https://github.com/AiArtFactory/Ryoki/raw/refs/heads/repo/apk/tachiyomi-en.manhwaus-v1.0.1.apk"
+          "apkUrl": "https://raw.githubusercontent.com/AiArtFactory/Ryoki/refs/heads/repo/apk/tachiyomi-en.manhwaus-v1.0.1.apk",
+          "iconUrl": "https://raw.githubusercontent.com/AiArtFactory/Ryoki/refs/heads/repo/icon/eu.kanade.tachiyomi.extension.en.manhwaus.png"
         },
         "extensionLib": "1.4",
         "versionCode": 1,
